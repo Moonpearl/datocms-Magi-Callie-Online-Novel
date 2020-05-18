@@ -14,5 +14,13 @@ module.exports = {
         apiToken: process.env.DATO_API_TOKEN,
       },
     },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/`,
+      },
+    },
   ],
 }
