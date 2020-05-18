@@ -3,6 +3,7 @@ import React from 'react';
 
 // Components
 import { Layout } from '../components';
+import { graphql } from 'gatsby';
 
 // Main content
 const BookPage = ({ data, pageContext }) => {
