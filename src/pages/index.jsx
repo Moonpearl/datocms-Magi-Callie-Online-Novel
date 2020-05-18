@@ -8,18 +8,38 @@ import { makeStyles } from '@material-ui/core';
 import { MarkdownTextContainer } from '../components/common';
 
 // Styles
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   responsiveGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(480px, 1fr))',
+    [theme.breakpoints.up('md')]: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    }
   },
   summary: {
+    position: 'relative',
     color: 'white',
     fontSize: '1.5em',
     lineHeight: '150%',
+    padding: '0 1.75em',
     margin: 'auto 0',
+    '&:before': {
+      position: 'absolute',
+      fontSize: '4em',
+      fontStyle: 'normal',
+      content: '\'\u201C\'',
+      top: '.25em',
+      left: 0,
+    },
+    '&:after': {
+      position: 'absolute',
+      fontSize: '4em',
+      fontStyle: 'normal',
+      content: '\'\u201D\'',
+      bottom: '-.25em',
+      right: 0,
+    },
   }
-});
+}));
 
 // Main content
 const IndexPage = ({
@@ -40,9 +60,7 @@ const IndexPage = ({
         <MarkdownTextContainer
           className={styles.summary}
           textNode={featuredBook.summaryNode}
-        >
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Netus et malesuada fames ac turpis. Viverra suspendisse potenti nullam ac tortor vitae. A cras semper auctor neque vitae tempus quam pellentesque. Pretium aenean pharetra magna ac placerat vestibulum lectus mauris. Condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi. Ac tortor dignissim convallis aenean et tortor at. Pellentesque sit amet porttitor eget dolor morbi. Neque aliquam vestibulum morbi blandit cursus risus. Pretium nibh ipsum consequat nisl vel pretium. Ut sem viverra aliquet eget sit amet tellus. Habitant morbi tristique senectus et. At tellus at urna condimentum mattis pellentesque. Odio morbi quis commodo odio aenean. At volutpat diam ut venenatis tellus in. Vulputate mi sit amet mauris commodo quis. Justo nec ultrices dui sapien. Vestibulum morbi blandit cursus risus at ultrices mi tempus imperdiet.
-        </MarkdownTextContainer>
+        />
       </div>
     </Layout>
   );
