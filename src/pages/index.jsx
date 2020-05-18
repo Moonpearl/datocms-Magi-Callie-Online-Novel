@@ -8,10 +8,12 @@ import { makeStyles } from '@material-ui/core';
 import { MarkdownTextContainer } from '../components/common';
 
 // Styles
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   responsiveGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(480px, 1fr))',
+    [theme.breakpoints.up('md')]: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(2, 1fr)',
+    }
   },
   summary: {
     position: 'relative',
@@ -25,7 +27,7 @@ const useStyles = makeStyles({
       fontSize: '4em',
       fontStyle: 'normal',
       content: '\'\u201C\'',
-      top: '.5em',
+      top: '.25em',
       left: 0,
     },
     '&:after': {
@@ -37,7 +39,7 @@ const useStyles = makeStyles({
       right: 0,
     },
   }
-});
+}));
 
 // Main content
 const IndexPage = ({

@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useStaticQuery, graphql } from 'gatsby';
-import { makeStyles } from '@material-ui/core';
+import { Tooltip } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import Img from 'gatsby-image';
 
 const useStyles = makeStyles(theme => ({
   container: {
     position: 'relative',
+    margin: 'auto 0',
   },
-  cover: {
+  coverContainer: {
     margin: 'auto',
     width: '42%',
     position: 'absolute',
@@ -17,16 +19,16 @@ const useStyles = makeStyles(theme => ({
     transformStyle: 'preserve-3d',
     perspective: '1000px',
     [theme.breakpoints.down('xs')]: {
-      perspective: '750px',
+      perspective: '350px',
     },
-    [theme.breakpoints.only('lg')]: {
+    [theme.breakpoints.between('sm', 'lg')]: {
       perspective: '500px',
     },
     [theme.breakpoints.up('lg')]: {
       perspective: '750px',
     },
   },
-  cover2: {
+  coverGraphic: {
     transform: 'rotateY(-25deg)',
     transformOrigin: '0 50%',
     transition: 'transform .3s ease, box-shadow .3s ease',
@@ -37,6 +39,21 @@ const useStyles = makeStyles(theme => ({
     },
   }
 }));
+
+const useTooltipStyles = makeStyles(theme => ({
+  arrow: {
+    color: theme.palette.common.black,
+  },
+  tooltip: {
+    backgroundColor: theme.palette.common.black,
+  },
+}));
+
+const ArrowTooltip = props => {
+  const styles = useTooltipStyles();
+
+  return <Tooltip arrow classes={styles} {...props} />;
+}
 
 const ThreeDBook = ({ cover }) => {
   const { file } = useStaticQuery(graphql`
@@ -59,12 +76,14 @@ const ThreeDBook = ({ cover }) => {
         fluid={file.childImageSharp.fluid}
         alt="Book image"
       />
-      <div className={styles.cover}>
-        <Img
-          className={styles.cover2}
-          fluid={cover.fluid}
-          alt="Book cover"
-        />
+      <div className={styles.coverContainer}>
+        <ArrowTooltip title="Click to read!">
+          <Img
+            className={styles.coverGraphic}
+            fluid={cover.fluid}
+            alt="Book cover"
+          />
+        </ArrowTooltip>
       </div>
     </div>
   );
