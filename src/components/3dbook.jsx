@@ -29,9 +29,11 @@ const useStyles = makeStyles(theme => ({
   cover2: {
     transform: 'rotateY(-25deg)',
     transformOrigin: '0 50%',
-    transition: 'transform .3s ease',
+    transition: 'transform .3s ease, box-shadow .3s ease',
+    boxShadow: '10px 0px 10px -5px rgba(0,0,0,.5)',
     '&:hover': {
-      transform: 'rotateY(-30deg)',
+      transform: 'rotateY(-35deg)',
+      boxShadow: '10px 0px 20px -10px rgba(0,0,0,1)',
     },
   }
 }));
