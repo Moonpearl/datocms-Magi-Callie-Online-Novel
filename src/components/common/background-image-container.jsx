@@ -6,6 +6,7 @@ const useStyles = makeStyles({
   backgroundImage: ({ backgroundImage }) => ({
     backgroundImage: backgroundImage ? `url(${backgroundImage})` : null,
     backgroundSize: 'cover',
+    backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundAttachment: 'fixed',
     position: 'fixed',

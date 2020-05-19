@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import { Tooltip } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import Img from 'gatsby-image';
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
       perspective: '500px',
     },
     [theme.breakpoints.up('lg')]: {
-      perspective: '750px',
+      perspective: '900px',
     },
   },
   coverGraphic: {
@@ -55,7 +55,7 @@ const ArrowTooltip = props => {
   return <Tooltip arrow classes={styles} {...props} />;
 }
 
-const ThreeDBook = ({ cover }) => {
+const ThreeDBook = ({ cover, href }) => {
   const { file } = useStaticQuery(graphql`
     query ImageQuery {
       file(relativePath: { eq: "images/book-blank.png" }) {
@@ -77,13 +77,15 @@ const ThreeDBook = ({ cover }) => {
         alt="Book image"
       />
       <div className={styles.coverContainer}>
-        <ArrowTooltip title="Click to read!">
-          <Img
-            className={styles.coverGraphic}
-            fluid={cover.fluid}
-            alt="Book cover"
-          />
-        </ArrowTooltip>
+        <Link to={href}>
+          <ArrowTooltip title="Click to read!" placement="bottom">
+            <Img
+              className={styles.coverGraphic}
+              fluid={cover.fluid}
+              alt="Book cover"
+            />
+          </ArrowTooltip>
+        </Link>
       </div>
     </div>
   );
