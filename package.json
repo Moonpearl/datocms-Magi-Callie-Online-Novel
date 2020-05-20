@@ -5,6 +5,7 @@
   "author": "Stefano Verna <s.verna@datocms.com>",
   "dependencies": {
     "@material-ui/core": "^4.9.14",
+    "@material-ui/pickers": "^3.2.10",
     "@material-ui/styles": "^4.9.14",
     "dotenv": "^8.1.0",
     "gatsby": "^2.20.0",
