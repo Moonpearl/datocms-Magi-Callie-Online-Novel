@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   buttonContainer: {
     display: 'flex',
     justifyContent: 'center',
-    margin: '2em',
+    margin: '2em 0',
     '& > *': {
       margin: '0 .25em',
     },
