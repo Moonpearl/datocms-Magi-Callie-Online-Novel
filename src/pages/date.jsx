@@ -29,23 +29,11 @@ const useStyles = makeStyles(theme => ({
 const DatePage = ({ data, location }) => {
   const { dateModel } = data;
 
-  const [currentDate, setCurrentDate] = useState(date);
-
-  const midgardDate = useMemo(() =>
-    new MidgardDate(currentDate)
-  , [currentDate]);
-
-  const styles = useStyles();
-
   let date = new Date();
   let noDate = true;
   let error = false;
 
-  if (!location.href) {
-    return <div/>;
-  }
-
-  const params = new URL(location.href).searchParams;
+  const params = new URL(location.href || 'http://localhost:8000/').searchParams;
 
   const year = Number(params.get('year'));
   const month = Number(params.get('month'));
@@ -70,6 +58,14 @@ const DatePage = ({ data, location }) => {
     noDate,
     error,
   };
+
+  const [currentDate, setCurrentDate] = useState(date);
+
+  const midgardDate = useMemo(() =>
+    new MidgardDate(currentDate)
+  , [currentDate]);
+
+  const styles = useStyles();
 
   return (
     <Layout backgroundImage={dateModel.backgroundImage.fluid.src}>
