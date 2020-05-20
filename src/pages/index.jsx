@@ -18,8 +18,8 @@ const useStyles = makeStyles(theme => ({
   summary: {
     position: 'relative',
     color: 'white',
-    fontSize: '1.5em',
-    lineHeight: '150%',
+    fontSize: '1.25em',
+    lineHeight: '200%',
     padding: '0 1.75em',
     margin: 'auto 0',
     '&:before': {
@@ -56,6 +56,7 @@ const IndexPage = ({
       <div className={styles.responsiveGrid}>
         <ThreeDBook 
           cover={featuredBook.cover}
+          href={`/books/${featuredBook.slug}`}
         />
         <MarkdownTextContainer
           className={styles.summary}

@@ -78,9 +78,13 @@ const NavDrawer = () => {
         <Collapse in={open} timeout="auto" unmountOnExit>
           <List disablePadding component="ul">
             {books.map( (book, index) => (
-              <ListItem button key={index} className={styles.nested} component="li">
-                <ListItemText primary={book.title} />
-              </ListItem>
+              <li key={index}>
+                <Link to={`/books/${book.slug}`}>
+                  <ListItem button className={styles.nested}>
+                    <ListItemText primary={book.title} />
+                  </ListItem>
+                </Link>
+              </li>
             ))}
           </List>
         </Collapse>

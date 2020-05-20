@@ -5,7 +5,7 @@ const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 const entityData = [
-  { entity: 'allDatoCmsBook', uri: 'books', template: 'book' },
+  { entity: 'allDatoCmsBook', uri: 'books', template: 'book.jsx' },
 ];
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -25,6 +25,9 @@ exports.createPages = async ({ graphql, actions }) => {
             title
             slug
             gdriveChaptersFileId
+            backgroundImage {
+              url
+            }
           }
         }
       }
@@ -135,7 +138,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
     createPage({
       path: `books/${book.slug}/${index}`,
-      component: path.resolve(`./src/templates/chapter.js`),
+      component: path.resolve(`./src/templates/chapter.jsx`),
       context: {
         chapter,
         nextChapter: chapters.filter( item =>
@@ -164,7 +167,7 @@ exports.createPages = async ({ graphql, actions }) => {
     result.data[entity].edges.map(({ node: entity }) => {
       createPage({
         path: `${uri}/${entity.slug}`,
-        component: path.resolve(`./src/templates/${template}.js`),
+        component: path.resolve(`./src/templates/${template}`),
         context: {
           slug: entity.slug,
           chapters,
