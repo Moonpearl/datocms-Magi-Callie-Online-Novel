@@ -4,8 +4,9 @@ import { Link, graphql } from 'gatsby';
 
 // Components
 import { Layout, ThreeDBook } from '../components';
-import { makeStyles } from '@material-ui/core';
-import { MarkdownTextContainer } from '../components/common';
+import { makeStyles, Divider, Button } from '@material-ui/core';
+import { MarkdownTextContainer, Header } from '../components/common';
+import { FaAngleDoubleRight } from 'react-icons/fa';
 
 // Styles
 const useStyles = makeStyles(theme => ({
@@ -15,16 +16,27 @@ const useStyles = makeStyles(theme => ({
       gridTemplateColumns: 'repeat(2, 1fr)',
     }
   },
+  root: {
+    textAlign: 'center',
+    color: 'white',
+    fontSize: '1.2em',
+  },
+  mainTitle: {
+    fontSize: '3rem',
+  },
+  description: {
+    lineHeight: '200%',
+    margin: 'auto 0',
+  },
   summary: {
     position: 'relative',
-    color: 'white',
-    fontSize: '1.25em',
-    lineHeight: '200%',
     padding: '0 1.75em',
-    margin: 'auto 0',
+    textAlign: 'justify',
+    textJustify: 'inter-word',
+    fontStyle: 'italic',
     '&:before': {
       position: 'absolute',
-      fontSize: '4em',
+      fontSize: '3em',
       fontStyle: 'normal',
       content: '\'\u201C\'',
       top: '.25em',
@@ -32,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     },
     '&:after': {
       position: 'absolute',
-      fontSize: '4em',
+      fontSize: '3em',
       fontStyle: 'normal',
       content: '\'\u201D\'',
       bottom: '-.25em',
@@ -53,15 +65,28 @@ const IndexPage = ({
 
   return (
     <Layout backgroundImage={featuredBook.backgroundImage.fluid.src}>
-      <div className={styles.responsiveGrid}>
-        <ThreeDBook 
-          cover={featuredBook.cover}
-          href={`/books/${featuredBook.slug}`}
-        />
-        <MarkdownTextContainer
-          className={styles.summary}
-          textNode={featuredBook.summaryNode}
-        />
+      <div className={styles.root}>
+        <Header level={1} className={styles.mainTitle}>Welcome to Midgård</Header>
+        <div className={styles.responsiveGrid}>
+          <ThreeDBook 
+            cover={featuredBook.cover}
+            href={`/books/${featuredBook.slug}`}
+            interactive
+          />
+          <div className={styles.description}>
+            <Header level={2}>{featuredBook.title}</Header>
+            <Divider />
+            <MarkdownTextContainer
+              className={styles.summary}
+              textNode={featuredBook.summaryNode}
+            />
+            <Link to={`/books/${featuredBook.slug}`}>
+              <Button variant="contained" color="primary">
+                Start Reading{` `}<FaAngleDoubleRight />
+              </Button>
+            </Link>
+          </div>
+        </div>
       </div>
     </Layout>
   );
@@ -79,6 +104,7 @@ export const query = graphql`
       }
       featuredBook {
         slug
+        title
         cover {
           fluid(maxWidth: 512, imgixParams: { fm: "jpg", auto: "compress" }) {
             ...GatsbyDatoCmsSizes

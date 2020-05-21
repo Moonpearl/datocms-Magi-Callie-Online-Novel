@@ -45,9 +45,9 @@ const ChapterPage = ({ pageContext }) => {
         <ChapterContent html={chapter.html} />
       </Paper>
       <div className={styles.buttonContainer}>
-        <Link to={`/books/${chapter.book.slug}`}>
+        <Link to={`/books/${chapter.book.slug}#table`}>
           <Button variant="contained" color="primary">
-            <MdList size="1.5em" />{` `}Chapters
+            <MdList size="1.5em" />{` `}Table
           </Button>
         </Link>
         {nextChapter ?
