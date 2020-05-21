@@ -18,7 +18,7 @@ const useStyles = makeStyles( theme =>
 
 const NavData = [
   { text: 'Home', path: '/', Icon: FaHome },
-  { text: 'About Me', path: '/about', Icon: FaQuestionCircle },
+  { text: 'About', path: '/about', Icon: FaQuestionCircle },
   { text: 'Calendar', path: '/date', Icon: FaCalendarDay },
 ];
 
