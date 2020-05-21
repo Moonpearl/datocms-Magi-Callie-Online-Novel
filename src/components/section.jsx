@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 const Section = ({ title, contentNode, backgroundImage }) => {
   const styles = useStyles({
-    image: backgroundImage.uploadId.fluid.src,
+    image: backgroundImage.fluid.src,
   });
 
   return (
@@ -64,10 +64,8 @@ Section.propTypes = {
     }).isRequired,
   }).isRequired,
   backgroundImage: PropTypes.shape({
-    uploadId: PropTypes.shape({
-      fluid: PropTypes.shape({
-        src: PropTypes.string.isRequired,
-      }).isRequired,
+    fluid: PropTypes.shape({
+      src: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };

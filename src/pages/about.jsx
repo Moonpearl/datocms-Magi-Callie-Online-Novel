@@ -20,7 +20,7 @@ const AboutPage = ({ data }) => {
   const styles = useStyles();
 
   return (
-    <Layout backgroundImage={about.backgroundImage.uploadId.fluid.src}>
+    <Layout backgroundImage={about.backgroundImage.fluid.src}>
       <Header level={1} className={styles.mainTitle}>About</Header>
       {about.sections.map( (section, index) =>
         <Section key={index} {...section} />
@@ -42,18 +42,14 @@ export const query = graphql`
           }
         }
         backgroundImage {
-          uploadId {
-            fluid {
-              src
-            }
+          fluid {
+            src
           }
         }
       }
       backgroundImage {
-        uploadId {
-          fluid {
-            src
-          }
+        fluid {
+          src
         }
       }
     }
