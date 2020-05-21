@@ -2,8 +2,7 @@ export default (darkMode) => ({
   palette: {
     type: darkMode ? 'dark' : 'light',
     primary: {
-      light: '#044862',
-      main: '#012C3B',
+      main: '#044862',
       dark: '#011519',
     },
     background: {
