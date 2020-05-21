@@ -1,13 +1,39 @@
 import React from 'react'
 import { Layout } from '../components';
+import { useStaticQuery, graphql } from 'gatsby';
+import { Header } from '../components/common';
+import { makeStyles } from '@material-ui/styles';
 
-const NotFoundPage = () => (
-  <Layout>
-    <div className="NotFound">
-      <h1 className="NotFound-title common-title">NOT FOUND</h1>
-      <p className="NotFound=text">Somehow, the page you were looking disappeared in the Void...</p>
-    </div>
-  </Layout>
-)
+const useStyles = makeStyles({
+  container: {
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: '1.25rem',
+  },
+});
+
+const NotFoundPage = () => {
+  const { page } = useStaticQuery(graphql`
+    query NotFoundPage {
+      page: datoCmsNotFoundPage {
+        backgroundImage {
+          url
+        }
+        text
+      }
+    }
+  `);
+
+  const styles = useStyles();
+
+  return (
+    <Layout backgroundImage={page.backgroundImage.url}>
+      <div className={styles.container}>
+        <Header level={1}>Page not found</Header>
+        <p>{page.text}</p>
+      </div>
+    </Layout>
+  );
+}
 
 export default NotFoundPage
