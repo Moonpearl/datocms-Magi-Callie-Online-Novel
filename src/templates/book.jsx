@@ -4,11 +4,12 @@ import React from 'react';
 // Components
 import { Layout, ThreeDBook } from '../components';
 import { graphql, Link } from 'gatsby';
-import { Paper, List, ListItem, Divider } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
+import { Paper, List, ListItem, Divider, ListItemIcon } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import { Header, MarkdownTextContainer } from '../components/common';
+import { FaBookReader } from 'react-icons/fa';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   container: {
     maxWidth: '600px',
     margin: '0 auto',
@@ -25,8 +26,27 @@ const useStyles = makeStyles({
   },
   table: {
     fontSize: '1.75em',
-  }
-});
+  },
+  chapter: {
+    paddingTop: theme.spacing(1.5),
+    paddingBottom: theme.spacing(1.5),
+    '& svg': {
+      fontSize: 0,
+      transformOrigin: 'center',
+      transition: 'all .3s ease',
+    },
+    '& .MuiListItemIcon-root': {
+      transition: 'margin .3s ease',
+      marginRight: '-1rem',
+    },
+    '&:hover .MuiListItemIcon-root': {
+      marginRight: 'initial',
+    },
+    '&:hover svg': {
+      fontSize: 'inherit',
+    }
+  },
+}));
 
 // Main content
 const BookPage = ({ data, pageContext }) => {
@@ -63,7 +83,10 @@ const BookPage = ({ data, pageContext }) => {
             {bookChapters.map( (chapter, index) =>
               <li key={index}>
                 <Link to={`/books/${book.slug}/${chapter.index}`}>
-                  <ListItem button>
+                  <ListItem className={styles.chapter} button>
+                    <ListItemIcon>
+                      <FaBookReader />
+                    </ListItemIcon>
                     {chapter.title}
                   </ListItem>
                 </Link>
