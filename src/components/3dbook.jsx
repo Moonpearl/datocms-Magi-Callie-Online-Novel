@@ -34,8 +34,8 @@ const useStyles = makeStyles(theme => ({
     transition: 'transform .3s ease, box-shadow .3s ease',
     boxShadow: '10px 0px 10px -5px rgba(0,0,0,.5)',
     '&:hover': {
-      transform: 'rotateY(-35deg)',
-      boxShadow: '10px 0px 20px -10px rgba(0,0,0,1)',
+      transform: props => props.interactive && 'rotateY(-35deg)',
+      boxShadow: props => props.interactive && '10px 0px 20px -10px rgba(0,0,0,1)',
     },
   }
 }));
@@ -56,7 +56,7 @@ const ArrowTooltip = props => {
 }
 
 
-const ThreeDBook = ({ cover, href }) => {
+const ThreeDBook = ({ cover, href, interactive }) => {
   const { file } = useStaticQuery(graphql`
     query ImageQuery {
       file(relativePath: { eq: "images/book-blank.png" }) {
@@ -69,7 +69,13 @@ const ThreeDBook = ({ cover, href }) => {
     }
   `);
 
-  const styles = useStyles();
+  const styles = useStyles({ interactive });
+
+  const coverImage = <Img
+    className={styles.coverGraphic}
+    fluid={cover.fluid}
+    alt="Book cover"
+  />;
 
   return (
     <div className={styles.container}>
@@ -78,15 +84,15 @@ const ThreeDBook = ({ cover, href }) => {
         alt="Book image"
       />
       <div className={styles.coverContainer}>
-        <Link to={href}>
-          <ArrowTooltip title="Click to read!" placement="bottom">
-            <Img
-              className={styles.coverGraphic}
-              fluid={cover.fluid}
-              alt="Book cover"
-            />
-          </ArrowTooltip>
-        </Link>
+        {interactive ?
+          <Link to={href}>
+            <ArrowTooltip title="Click to read!" placement="bottom">
+              {coverImage}
+            </ArrowTooltip>
+          </Link>
+        :
+          coverImage
+        }
       </div>
     </div>
   );

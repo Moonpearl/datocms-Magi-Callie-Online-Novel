@@ -9,6 +9,7 @@ import { BackgroundImage } from '../common';
 import { createTheme } from '../../styles';
 import { useRecoilState, RecoilRoot } from 'recoil';
 import { darkModeState } from '../../utils/states';
+import Footer from './footer';
 
 const useStyles = makeStyles( theme =>
   createStyles({
@@ -21,9 +22,11 @@ const useStyles = makeStyles( theme =>
     main: {
       flexGrow: 1,
       padding: theme.spacing(3),
-    },
-    content: {
+      minHeight: '100vh',
       position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
     },
   }),
 );
@@ -45,10 +48,9 @@ const LayoutContent = ({ backgroundImage, children }) => {
       <ThemeProvider theme={theme}>
         <Header />
         <main className={styles.main}>
-          <div className={styles.content}>
-            <div className={styles.toolbar} />
-            {children}
-          </div>
+          <div className={styles.toolbar} />
+          {children}
+          <Footer />
         </main>
       </ThemeProvider>
     </div>

@@ -52,7 +52,7 @@ const Header = () => {
   };
 
   return (
-    <>
+    <header>
       <AppBar position="fixed" className={styles.appBar}>
         <Toolbar>
           <IconButton
@@ -100,7 +100,7 @@ const Header = () => {
           </Drawer>
         </Hidden>
       </nav>
-    </>
+    </header>
   );
 }
 

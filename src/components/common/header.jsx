@@ -6,6 +6,7 @@ const useStyles = makeStyles(theme => ({
   header: {
     fontFamily: 'MORPHEUS, Arial, sans-serif',
     fontWeight: 'normal',
+    fontSize: '2rem',
   }
 }));
 
