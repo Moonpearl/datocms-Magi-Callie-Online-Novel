@@ -58,7 +58,7 @@ const ChapterPage = ({ pageContext }) => {
           </Link>
         :
           <Button variant="contained" color="primay" disabled>
-            To be continued...
+            To be continued …
           </Button>
         }
       </div>
