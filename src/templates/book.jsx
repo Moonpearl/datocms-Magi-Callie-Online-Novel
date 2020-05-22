@@ -11,7 +11,7 @@ import { FaBookReader } from 'react-icons/fa';
 
 const useStyles = makeStyles(theme => ({
   container: {
-    width: '600px',
+    maxWidth: '600px',
     margin: '0 auto',
   },
   description: {
