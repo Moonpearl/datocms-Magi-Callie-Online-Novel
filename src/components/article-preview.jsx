@@ -5,6 +5,8 @@ import { MarkdownTextContainer } from './common';
 import { makeStyles } from '@material-ui/core/styles';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 import { Link } from 'gatsby';
+import { MidgardDate } from '../utils';
+import MidgardDateRenderer from './midgard-date-renderer';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,7 +33,7 @@ const ArticlePreview = ({ slug, title, contentNode, meta }) => {
           {title}
         </Typography>
         <Typography variant="caption" color="textSecondary" gutterBottom>
-          Published on {(new Date(meta.updatedAt)).toLocaleString('en-EN')}
+          Published on <MidgardDateRenderer date={new Date(meta.updatedAt)} withTime withElapsed />
         </Typography>
         <Typography variant="body2">
           <MarkdownTextContainer

@@ -5,6 +5,7 @@ import { Layout } from '../components';
 import { Header, MarkdownTextContainer } from '../components/common';
 import { Typography, Paper, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import MidgardDateRenderer from '../components/midgard-date-renderer';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +27,7 @@ const NewsPage = ({ data: { page, post } }) => {
           <Header level={1}>{title}</Header>
         </Typography>
         <Typography variant="caption" color="textSecondary" gutterBottom>
-          Published on {(new Date(meta.updatedAt)).toLocaleString('en-EN')}
+          Published on <MidgardDateRenderer date={new Date(meta.updatedAt)} withTime withElapsed />
         </Typography>
         <Divider />
         <Typography variant="body1" align="justify">

@@ -62,6 +62,10 @@ class MidgardDate {
   isLeap = year => new Date(year, 1, 29).getDate() === 29;
   
   setDate = date => {
+    if (!(date instanceof Date)) {
+      throw new Error(`Object passed to MidgardDate is not a valid Date.`);
+    }
+
     const year = date.getFullYear();
     const daysInYear = this.isLeap(year - 1) ? 366 : 365;
 
