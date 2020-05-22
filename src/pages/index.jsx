@@ -3,8 +3,8 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 
 // Components
-import { Layout, ThreeDBook } from '../components';
-import { makeStyles, Divider, Button } from '@material-ui/core';
+import { Layout, ThreeDBook, ArticlePreview } from '../components';
+import { makeStyles, Divider, Button, Container } from '@material-ui/core';
 import { MarkdownTextContainer, Header } from '../components/common';
 import { FaAngleDoubleRight } from 'react-icons/fa';
 
@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       display: 'grid',
       gridTemplateColumns: 'repeat(2, 1fr)',
-    }
+    },
   },
   root: {
     textAlign: 'center',
@@ -50,16 +50,22 @@ const useStyles = makeStyles(theme => ({
       bottom: '-.25em',
       right: 0,
     },
-  }
+  },
+  news: {
+    maxWidth: '600px',
+    marginTop: theme.spacing(16),
+  },
 }));
 
 // Main content
 const IndexPage = ({
   data: {
-    home
+    home,
+    allDatoCmsNews
   }
 }) => {
   const { featuredBook } = home;
+  const news = allDatoCmsNews.edges.map(edge => edge.node);
 
   const styles = useStyles();
 
@@ -87,6 +93,19 @@ const IndexPage = ({
             </Link>
           </div>
         </div>
+        <Container className={styles.news}>
+          <Header level={2}>Latest news</Header>
+          <Divider />
+          <Container component="ul">
+            {news.map( (post, index) =>
+              <ArticlePreview
+                key={index}
+                component="li"
+                {...post}
+              />
+            )}
+          </Container>
+        </Container>
       </div>
     </Layout>
   );
@@ -118,6 +137,23 @@ export const query = graphql`
         summaryNode {
           childMarkdownRemark {
             html
+          }
+        }
+      }
+    }
+    allDatoCmsNews(sort: {fields: meta___updatedAt, order: DESC}, limit: 3) {
+      edges {
+        node {
+          slug
+          title
+          contentNode {
+            childMarkdownRemark {
+              html
+            }
+          }
+          meta {
+            createdAt
+            updatedAt
           }
         }
       }
