@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import { MarkdownTextContainer, Header } from './common';
-import { Box, Container } from '@material-ui/core';
+import { Box, Container, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -12,9 +12,6 @@ const useStyles = makeStyles(theme => ({
   },
   textContainer: {
     padding: theme.spacing(2),
-    textAlign: 'justify',
-    textAlignLast: 'left',
-    lineHeight: '2rem',
   },
   image: {
     backgroundImage: props => `url(${props.image})`,
@@ -43,10 +40,12 @@ const Section = ({ title, contentNode, backgroundImage }) => {
         className={styles.textContainer}
       >
         <Container>
-          <Header level={2}>{title}</Header>
-          <MarkdownTextContainer
-            textNode={contentNode}
-          />
+          <Typography variant="body1" align="justify">
+            <Header level={2}>{title}</Header>
+            <MarkdownTextContainer
+              textNode={contentNode}
+            />
+          </Typography>
         </Container>
       </Box>
       <div className={styles.image}>
