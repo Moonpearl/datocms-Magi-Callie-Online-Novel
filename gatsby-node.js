@@ -6,6 +6,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 
 const entityData = [
   { entity: 'allDatoCmsBook', uri: 'books', template: 'book.jsx' },
+  { entity: 'allDatoCmsNews', uri: 'news', template: 'news.jsx' },
 ];
 
 exports.createPages = async ({ graphql, actions }) => {

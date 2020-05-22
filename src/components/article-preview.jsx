@@ -31,7 +31,7 @@ const ArticlePreview = ({ slug, title, contentNode, meta }) => {
           {title}
         </Typography>
         <Typography variant="caption" color="textSecondary" gutterBottom>
-          Published at {(new Date(meta.updatedAt)).toLocaleString('en-EN')}
+          Published on {(new Date(meta.updatedAt)).toLocaleString('en-EN')}
         </Typography>
         <Typography variant="body2">
           <MarkdownTextContainer
