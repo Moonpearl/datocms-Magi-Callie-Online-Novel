@@ -18,7 +18,7 @@
     "gatsby-transformer-remark": "^2.6.39",
     "gatsby-transformer-sharp": "^2.5.2",
     "googleapis": "^51.0.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^7.0.0",
     "papaparse": "^5.2.0",
     "react": "^16.10.2",
     "react-datepicker": "^2.16.0",
